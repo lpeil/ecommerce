@@ -10,12 +10,14 @@ function AppRoutes() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/">
-          <Route index element={<HomeScreen />} />
-          <Route path="*" element={<NotFoundScreen />} />
-        </Route>
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/">
+            <Route index element={<HomeScreen />} />
+            <Route path="*" element={<NotFoundScreen />} />
+          </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
