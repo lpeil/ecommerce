@@ -6,8 +6,6 @@ import NotFoundScreen from './screens/notFound';
 
 import { Navbar } from './components';
 
-import { Navbar } from './components';
-
 function AppRoutes() {
   return (
     <BrowserRouter>
