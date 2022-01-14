@@ -25,7 +25,7 @@ function HomeScreen() {
   }, []);
 
   return (
-    <div>
+    <div className="home screen">
       {products.map((product: ProductInterface) => (
         <p key={product.id}>{product.name}</p>
       ))}
