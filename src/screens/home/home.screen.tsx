@@ -9,6 +9,7 @@ import './home.styles.scss';
 
 import StoreInterface from '../../interfaces/store.interface';
 import ProductInterface from '../../interfaces/product.interface';
+import HomeStoreInterface from '../../interfaces/home-store.interface';
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -17,10 +18,35 @@ function HomeScreen() {
     (state: StoreInterface) => state.products,
   );
 
+  const homeOptions: HomeStoreInterface = useSelector(
+    (state: StoreInterface) => state.home,
+  );
+
+  const filterProducts = (product: ProductInterface) => {
+    if (
+      parseInt(product.price) < homeOptions.filters.price[0] ||
+      parseInt(product.price) > homeOptions.filters.price[1]
+    ) {
+      return false;
+    }
+
+    return product.name
+      .toLowerCase()
+      .includes(homeOptions.filters.name?.toLowerCase() || '');
+  };
+
   const getProducts = async () => {
     const apiProducts = await apiGetProducts();
 
     dispatch(setProducts(apiProducts));
+  };
+
+  const mostExpensiveProductPrice = (): number => {
+    const productsValues: number[] = products.map((product) =>
+      parseInt(product.price),
+    );
+
+    return Math.max(...productsValues);
   };
 
   useEffect(() => {
@@ -29,9 +55,9 @@ function HomeScreen() {
 
   return (
     <div className="home screen">
-      <LeftMenu />
+      <LeftMenu highestPrice={mostExpensiveProductPrice()} />
       <div className="products">
-        {products.map((product: ProductInterface) => (
+        {products.filter(filterProducts).map((product) => (
           <p key={product.id}>{product.name}</p>
         ))}
       </div>

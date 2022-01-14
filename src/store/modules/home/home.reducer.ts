@@ -10,7 +10,7 @@ const initialState: HomeStoreInterface = {
 
 export default function cart(
   state: HomeStoreInterface = initialState,
-  action: { type: string; name?: string },
+  action: { type: string; name?: string; price?: number[] },
 ) {
   switch (action.type) {
     case '@home/CLEAR_FILTERS':
@@ -21,6 +21,14 @@ export default function cart(
         filters: {
           ...state.filters,
           name: action.name,
+        },
+      }));
+    case '@home/SET_PRICE_FILTER':
+      return produce(state, () => ({
+        ...state,
+        filters: {
+          ...state.filters,
+          price: action.price,
         },
       }));
     default:
