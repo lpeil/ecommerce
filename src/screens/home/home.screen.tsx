@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { apiGetProducts } from '../../services/products';
 import { setProducts } from '../../store/modules/products/products.actions';
 
+import { LeftMenu } from './components';
+import './home.styles.scss';
+
 import StoreInterface from '../../interfaces/store.interface';
 import ProductInterface from '../../interfaces/product.interface';
 
@@ -26,9 +29,12 @@ function HomeScreen() {
 
   return (
     <div className="home screen">
-      {products.map((product: ProductInterface) => (
-        <p key={product.id}>{product.name}</p>
-      ))}
+      <LeftMenu />
+      <div className="products">
+        {products.map((product: ProductInterface) => (
+          <p key={product.id}>{product.name}</p>
+        ))}
+      </div>
     </div>
   );
 }
