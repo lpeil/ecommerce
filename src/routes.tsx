@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import HomeScreen from './screens/home/home.screen';
-import NotFoundScreen from './screens/notFound/not-found.screen';
+import HomeScreen from './screens/home';
+import NotFoundScreen from './screens/notFound';
 
 import { Navbar } from './components';
 
