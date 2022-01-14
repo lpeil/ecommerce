@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Typography, TextField, InputAdornment, Slider } from '@mui/material';
+import {
+  Typography,
+  TextField,
+  InputAdornment,
+  Slider,
+  Chip,
+  Stack,
+} from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import {
@@ -22,6 +29,8 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
     (state: StoreInterface) => state.home,
   );
 
+  const priceInitialValue: number[] = [0, highestPrice];
+
   const sliderTextValue = (value: number) => `$ ${value}.00`;
 
   const changeNameFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,13 +45,33 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
     dispatch(setHomePriceFilter(value));
   };
 
+  const deleteFilterName = () => {
+    dispatch(setHomeNameFilter(''));
+  };
+
+  const deleteFilterPrice = () => {
+    dispatch(setHomePriceFilter(priceInitialValue));
+  };
+
   useEffect(() => {
-    dispatch(setHomePriceFilter([0, highestPrice]));
+    dispatch(setHomePriceFilter(priceInitialValue));
   }, [highestPrice]);
 
   return (
     <div className="left-menu">
       <Typography variant="h5">Filters</Typography>
+      <Stack direction="column" spacing={1} className="stack">
+        {homeOptions.filters.name ? (
+          <Chip onDelete={deleteFilterName} label={homeOptions.filters.name} />
+        ) : null}
+        {homeOptions.filters.price[0] !== priceInitialValue[0] ||
+        homeOptions.filters.price[1] !== priceInitialValue[1] ? (
+          <Chip
+            onDelete={deleteFilterPrice}
+            label={`${homeOptions.filters.price[0]} - ${homeOptions.filters.price[1]}`}
+          />
+        ) : null}
+      </Stack>
       <div className="filter">
         <Typography variant="h6">Search by name</Typography>
         <TextField

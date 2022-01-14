@@ -1,6 +1,6 @@
 interface HomeStoreInterface {
   filters: {
-    name?: string;
+    name: string;
 
     price: number[];
   };
