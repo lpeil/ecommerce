@@ -56,7 +56,7 @@ function HomeOrder() {
   }, [homeOptions.orderBy]);
 
   return (
-    <Box className="order" sx={{ display: { xs: 'none', md: 'flex' } }}>
+    <Box className="order">
       <Typography variant="body1">Order by</Typography>
       <Select
         name="product-order-by"
