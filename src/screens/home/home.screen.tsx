@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Box } from '@mui/material';
 
-import { LeftMenu, ListCards, OrderBy } from './components';
+import { LeftMenu, ListCards, OrderBy, MobileFilters } from './components';
 import './home.styles.scss';
 
 import StoreInterface from '../../interfaces/store.interface';
@@ -24,7 +25,10 @@ function HomeScreen() {
     <div className="home screen">
       <LeftMenu highestPrice={mostExpensiveProductPrice()} />
       <div className="products">
-        <OrderBy />
+        <Box sx={{ display: { xs: 'none', md: 'block' }, width: '100%' }}>
+          <OrderBy />
+        </Box>
+        <MobileFilters highestPrice={mostExpensiveProductPrice()} />
         <ListCards />
       </div>
     </div>

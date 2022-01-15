@@ -220,4 +220,62 @@ describe('Home Screen', () => {
         .should('deep.equal', { field: 'name', order: 'desc' });
     });
   });
+
+  describe('Mobile Drawer', () => {
+    beforeEach(() => {
+      cy.viewport(375, 667);
+    });
+
+    it('checks render filters button', () => {
+      cy.get('.mobile-filters button').should('be.visible');
+    });
+
+    it('checks left menu and order by is not visible', () => {
+      cy.get('.left-menu').should('not.be.visible');
+      cy.get('.products .MuiBox-root > .order').should('not.be.visible');
+    });
+
+    it('checks drawer open', () => {
+      cy.get('.mobile-filters button').click();
+      cy.get('.filters-drawer').should('be.visible');
+    });
+
+    it('checks drawer has order by', () => {
+      cy.get('.filters-drawer .filters-content input[name="product-order-by"]')
+        .parent()
+        .should('be.visible');
+    });
+
+    it('checks drawer has name search', () => {
+      cy.get('.filters-drawer .filters-content input[name="name-search"]')
+        .parent()
+        .should('be.visible');
+    });
+
+    it('checks drawer has price slider', () => {
+      cy.get('.filters-drawer .filters-content input[name="price-search"]')
+        .first()
+        .parent()
+        .should('exist');
+    });
+
+    it('checks drawer close', () => {
+      cy.get('.filters-drawer .filters-head svg').first().click();
+
+      cy.wait(500);
+
+      cy.get('.filters-drawer').should('not.exist');
+    });
+
+    it('checks drawer apply filters', () => {
+      cy.get('.mobile-filters button').click();
+      cy.get('.filters-drawer .filters-content .MuiButton-root')
+        .first()
+        .click();
+
+      cy.wait(500);
+
+      cy.get('.filters-drawer').should('not.exist');
+    });
+  });
 });
