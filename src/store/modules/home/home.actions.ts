@@ -11,3 +11,12 @@ export const setHomePriceFilter = (price: number[] | number) => ({
   type: '@home/SET_PRICE_FILTER',
   price,
 });
+
+export const changeOrderBy = (
+  field: 'id' | 'name' | 'price',
+  order: 'asc' | 'desc',
+) => ({
+  type: '@home/CHANGE_ORDER_BY',
+  field,
+  order,
+});

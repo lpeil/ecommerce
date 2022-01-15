@@ -29,11 +29,34 @@ function HomeListCards() {
       .includes(homeOptions.filters.name?.toLowerCase() || '');
   };
 
+  const orderProducts = (a: ProductInterface, b: ProductInterface) => {
+    const price1 = parseInt(a.price);
+    const price2 = parseInt(b.price);
+    const name1 = a.name.toLowerCase();
+    const name2 = b.name.toLowerCase();
+
+    switch (`${homeOptions.orderBy.field}-${homeOptions.orderBy.order}`) {
+      case 'name-asc':
+        return name1 > name2 ? 1 : -1;
+      case 'name-desc':
+        return name1 > name2 ? -1 : 1;
+      case 'price-asc':
+        return price1 > price2 ? 1 : -1;
+      case 'price-desc':
+        return price1 > price2 ? -1 : 1;
+      default:
+        return parseInt(a.id) > parseInt(b.id) ? 1 : -1;
+    }
+  };
+
   return (
     <div className="list-cards">
-      {products.filter(filterProducts).map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {products
+        .filter(filterProducts)
+        .sort(orderProducts)
+        .map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
     </div>
   );
 }
