@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Typography, TextField, Button } from '@mui/material';
+import { Typography, TextField, Button, Skeleton } from '@mui/material';
 
+import ProductName from './product-name';
 import './product.style.scss';
 
 import StoreInterface from '../../interfaces/store.interface';
@@ -22,12 +23,14 @@ function ProductScreen() {
   const [product, setProduct] = useState<ProductInterface>(
     {} as ProductInterface,
   );
-  const [cartQuantity, setCartQuantity] = useState<number>(0);
+  const [loadedProduct, setLoadedProduct] = useState<boolean>(false);
+  const [cartQuantity, setCartQuantity] = useState<number>(1);
 
   const findProduct = () => {
     const thisProduct = products.find((p) => p.id === id);
 
     if (thisProduct) {
+      setLoadedProduct(true);
       return setProduct(thisProduct);
     }
 
@@ -52,15 +55,26 @@ function ProductScreen() {
 
   return (
     <div className="product screen">
-      <img src={product.image} alt={product.name} loading="lazy" />
+      <ProductName name={product.name} mobile loaded={loadedProduct} />
+      {loadedProduct ? (
+        <img src={product.image} alt={product.name} loading="lazy" />
+      ) : (
+        <Skeleton variant="rectangular" />
+      )}
       <div className="product-content">
-        <Typography variant="h5" component="h1">
-          {product.name}
-        </Typography>
-        <Typography variant="body1">{productDescription}</Typography>
-        <Typography variant="h3" component="h6">
-          {`$ ${product.price}`}
-        </Typography>
+        <ProductName name={product.name} loaded={loadedProduct} />
+        {loadedProduct ? (
+          <Typography variant="body1">{productDescription}</Typography>
+        ) : (
+          <Skeleton variant="text" className="description" height={128} />
+        )}
+        {loadedProduct ? (
+          <Typography variant="h3" component="h6">
+            {`$ ${product.price}`}
+          </Typography>
+        ) : (
+          <Skeleton variant="text" height={64} width={140} />
+        )}
         <div className="product-to-cart">
           <div className="quantity">
             <Typography variant="body1">Quantity</Typography>
@@ -68,7 +82,7 @@ function ProductScreen() {
               name="quantity"
               value={cartQuantity}
               type="number"
-              inputProps={{ min: 0, max: product.stock }}
+              inputProps={{ min: 1, max: product.stock }}
               onChange={handleChangeCartQuantity}
               disabled={!product.stock}
             />
