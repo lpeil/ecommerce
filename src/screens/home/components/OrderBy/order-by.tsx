@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import {
+  Typography,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+  Box,
+} from '@mui/material';
 
 import StoreInterface from '../../../../interfaces/store.interface';
 import HomeStoreInterface from '../../../../interfaces/home-store.interface';
@@ -48,7 +54,7 @@ function HomeOrder() {
   }, [homeOptions.orderBy]);
 
   return (
-    <div className="order">
+    <Box className="order" sx={{ display: { xs: 'none', md: 'flex' } }}>
       <Typography variant="body1">Order by</Typography>
       <Select
         name="product-order-by"
@@ -61,7 +67,7 @@ function HomeOrder() {
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </Box>
   );
 }
 

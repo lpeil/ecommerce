@@ -1,12 +1,31 @@
+@import '../../styles/breakpoints';
+
 .product-card {
-  max-width: 320px;
-  margin: 0 16px 32px;
+  width: 320px;
+  max-width: 95vw;
+  margin: 0 0 16px;
+
+  @media (min-width: $screen-sm-min) {
+    margin: 0 8px 16px;
+  }
+
+  @media (min-width: $screen-md-min) {
+    margin: 0 16px 32px;
+  }
+
+  .MuiSkeleton-rectangular {
+    max-width: 100%
+  }
+
+  .MuiSkeleton-text {
+    max-width: 80%
+  }
 
   .MuiPaper-root {
     background-color: #FAFAFA;
 
     & .MuiCardMedia-root {
-      width: 320px;
+      width: 100%;
       height: 240px;
 
       background-color: #F3F3F3;
