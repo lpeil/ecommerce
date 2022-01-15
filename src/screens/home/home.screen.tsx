@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { apiGetProducts } from '../../services/products';
 import { setProducts } from '../../store/modules/products/products.actions';
 
-import { LeftMenu, ListCards } from './components';
+import { LeftMenu, ListCards, OrderBy } from './components';
 import './home.styles.scss';
 
 import StoreInterface from '../../interfaces/store.interface';
@@ -39,6 +39,7 @@ function HomeScreen() {
     <div className="home screen">
       <LeftMenu highestPrice={mostExpensiveProductPrice()} />
       <div className="products">
+        <OrderBy />
         <ListCards />
       </div>
     </div>

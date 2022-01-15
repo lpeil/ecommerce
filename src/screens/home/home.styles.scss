@@ -75,5 +75,14 @@
       flex-flow: row wrap;
       justify-content: space-around;
     }
+
+    .order {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      margin-bottom: 32px;
+    }
   }
 }
