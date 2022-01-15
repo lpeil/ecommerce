@@ -1,6 +1,6 @@
 {
   "env": {
-    "api": "https://5d6da1df777f670014036125.mockapi.io/api/v1/",
+    "apiURL": "https://5d6da1df777f670014036125.mockapi.io/api/v1/",
     "baseURL": "http://localhost:3000"
   },
   "viewportWidth": 1920,

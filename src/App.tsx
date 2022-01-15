@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';

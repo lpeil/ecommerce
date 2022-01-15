@@ -9,8 +9,7 @@
     padding: 8px;
     margin-right: 64px;
 
-    border-radius: 8px;
-    background-color: #F3F3F3;
+    background-color: #FAFAFA;
 
     h5 {
       margin: 8px 0 8px 16px;
@@ -29,7 +28,6 @@
       padding: 16px;
       margin-bottom: 16px;
 
-      border-radius: 8px;
       background-color: #FFFFFF;
 
       &:last-child {
@@ -69,5 +67,13 @@
   .products {
     display: flex;
     flex-direction: column;
+
+    max-width: calc(100% - 296px);
+
+    .list-cards {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
   }
 }
