@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { ProductCard } from '../../../../components';
+
 import StoreInterface from '../../../../interfaces/store.interface';
 import ProductInterface from '../../../../interfaces/product.interface';
 import HomeStoreInterface from '../../../../interfaces/home-store.interface';
@@ -30,7 +32,7 @@ function HomeListCards() {
   return (
     <div className="list-cards">
       {products.filter(filterProducts).map((product) => (
-        <p key={product.id}>{product.name}</p>
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

@@ -23,6 +23,7 @@ module.exports = {
     'import/extensions': 0,
     'default-param-last': 0,
     'no-restricted-exports': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
     radix: 0,
     'import/no-unresolved': 'error',
   },
