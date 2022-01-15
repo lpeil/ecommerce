@@ -28,10 +28,4 @@ function App() {
   );
 }
 
-// @ts-ignore
-if (window.Cypress) {
-  // @ts-ignore
-  window.store = store;
-}
-
 export default App;

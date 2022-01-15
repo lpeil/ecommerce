@@ -16,4 +16,10 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
+// @ts-ignore
+if (window.Cypress) {
+  // @ts-ignore
+  window.store = store;
+}
+
 reportWebVitals();
