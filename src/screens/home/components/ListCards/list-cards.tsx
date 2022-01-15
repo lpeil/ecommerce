@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { ProductCard } from '../../../../components';
+import { ProductCardSkeleton } from '../../../../components/ProductCard';
 
 import StoreInterface from '../../../../interfaces/store.interface';
 import ProductInterface from '../../../../interfaces/product.interface';
@@ -51,12 +52,16 @@ function HomeListCards() {
 
   return (
     <div className="list-cards">
-      {products
-        .filter(filterProducts)
-        .sort(orderProducts)
-        .map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      {products.length
+        ? products
+            .filter(filterProducts)
+            .sort(orderProducts)
+            .map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+        : Array.from(Array(6).keys()).map((key) => (
+            <ProductCardSkeleton key={key} />
+          ))}
     </div>
   );
 }
