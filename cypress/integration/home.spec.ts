@@ -8,7 +8,10 @@ describe('Home Screen', () => {
   });
 
   it('checks load products', () => {
-    cy.get('.products').children().its('length').should('be.gte', 1);
+    cy.get('.products .list-cards')
+      .children()
+      .its('length')
+      .should('be.gte', 1);
 
     cy.window()
       .its('store')
@@ -31,10 +34,11 @@ describe('Home Screen', () => {
         .get('.MuiChip-label')
         .contains(searchValue);
 
-      cy.get('.products')
+      cy.get('.products .list-cards')
         .children()
-        .each((product) => {
-          expect(product).contain(searchValue);
+        .get('.MuiCardContent-root h6')
+        .each((productName) => {
+          expect(productName).contain(searchValue);
         });
 
       cy.window()
