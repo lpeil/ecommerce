@@ -4,11 +4,12 @@ import {
   Typography,
   TextField,
   InputAdornment,
-  Slider,
   Chip,
   Stack,
 } from '@mui/material';
 import { Search } from '@mui/icons-material';
+
+import PriceSlider from '../PriceSlider';
 
 import {
   setHomeNameFilter,
@@ -31,18 +32,12 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
 
   const priceInitialValue: number[] = [0, highestPrice];
 
-  const sliderTextValue = (value: number) => `$ ${value}.00`;
-
   const changeNameFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
     if (value === homeOptions.filters.name) return;
 
     dispatch(setHomeNameFilter(value));
-  };
-
-  const changePriceFilter = (event: Event, value: number[] | number) => {
-    dispatch(setHomePriceFilter(value));
   };
 
   const deleteFilterName = () => {
@@ -87,20 +82,7 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
           }}
         />
       </div>
-      <div className="filter">
-        <Typography variant="h6">Price Range</Typography>
-        <Slider
-          name="price-search"
-          max={highestPrice || 0}
-          value={homeOptions.filters.price}
-          onChange={changePriceFilter}
-          valueLabelDisplay="auto"
-          getAriaLabel={() => 'Price slider'}
-          getAriaValueText={sliderTextValue}
-          valueLabelFormat={sliderTextValue}
-          disableSwap
-        />
-      </div>
+      <PriceSlider highestPrice={highestPrice} />
     </div>
   );
 }
