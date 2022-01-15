@@ -1,0 +1,21 @@
+.order {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin-bottom: 32px;
+
+  & .MuiOutlinedInput-root {
+    margin-left: 16px;
+
+    & .MuiOutlinedInput-input {
+      width: 132px;
+      padding: 6.5px 32px 6.5px 14px;
+    }
+
+    & .MuiOutlinedInput-notchedOutline {
+      border-width: 1px !important;
+      border-color: rgba(0, 0, 0, 0.23) !important;
+    }
+  }
+}

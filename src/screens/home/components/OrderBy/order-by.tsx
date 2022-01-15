@@ -8,10 +8,12 @@ import {
   Box,
 } from '@mui/material';
 
+import { changeOrderBy } from '../../../../store/modules/home/home.actions';
+
+import './order-by.style.scss';
+
 import StoreInterface from '../../../../interfaces/store.interface';
 import HomeStoreInterface from '../../../../interfaces/home-store.interface';
-
-import { changeOrderBy } from '../../../../store/modules/home/home.actions';
 
 function HomeOrder() {
   const dispatch = useDispatch();

@@ -5,6 +5,8 @@ import PriceSlider from '../PriceSlider';
 import NameSearch from '../NameSearch';
 import FiltersChips from '../FiltersChips';
 
+import '../filters.style.scss';
+
 interface HomeLeftMenuProps {
   highestPrice: number;
 }

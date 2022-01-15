@@ -18,10 +18,11 @@ body {
   .screen {
     width: 100%;
     max-width: 95%;
-    margin-top: 64px;
+    margin-top: 32px;
 
     @media (min-width: $screen-md-min) {
       max-width: 83.333333%;
+      margin-top: 64px;
     }
   }
 }

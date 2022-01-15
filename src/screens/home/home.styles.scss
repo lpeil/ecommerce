@@ -26,45 +26,6 @@
       margin: 0 0 8px 8px;
       align-items: flex-start;
     }
-
-    .filter {
-      padding: 16px;
-      margin-bottom: 16px;
-
-      background-color: #FFFFFF;
-
-      &:last-child {
-        margin: 0;
-      }
-
-      & h6 {
-        margin-bottom: 8px;
-
-        color: #333333;
-        font-size: 16px;
-        font-weight: normal;
-      }
-
-      & .MuiTextField-root {
-        & .MuiOutlinedInput-input {
-          padding: 6.5px 14px 6.5px;
-        }
-
-        & .MuiOutlinedInput-notchedOutline {
-          border-width: 1px !important;
-          border-color: rgba(0, 0, 0, 0.23) !important;
-        }
-      }
-
-      & .MuiSlider-colorPrimary {
-        width: 90%;
-        margin: 0 5%;
-      }
-
-      & input[name="price-search"] {
-        pointer-events: all;
-      }
-    }
   }
 
   .products {
@@ -80,26 +41,40 @@
       flex-flow: row wrap;
       justify-content: space-around;
     }
+  }
 
-    .order {
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
+  .mobile-filters {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 
-      margin-bottom: 32px;
+    margin-bottom: 32px;
+  }
+}
 
-      & .MuiOutlinedInput-root {
-        margin-left: 16px;
+.filters-drawer {
+  .MuiPaper-root {
+    display: flex;
+    align-items: center;
 
-        & .MuiOutlinedInput-input {
-          width: 132px;
-          padding: 6.5px 32px 6.5px 14px;
-        }
+    width: 100vw;
 
-        & .MuiOutlinedInput-notchedOutline {
-          border-width: 1px !important;
-          border-color: rgba(0, 0, 0, 0.23) !important;
-        }
+    background-color: #FAFAFA;
+
+    .filters-content {
+      display: flex;
+      flex-direction: column;
+
+      width: 90%;
+      margin-top: 16px;
+
+      .filters-head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 32px;
       }
     }
   }
