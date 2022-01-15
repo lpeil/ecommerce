@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { apiGetProducts } from '../../services/products';
-import { setProducts } from '../../store/modules/products/products.actions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { LeftMenu, ListCards, OrderBy } from './components';
 import './home.styles.scss';
@@ -11,17 +8,9 @@ import StoreInterface from '../../interfaces/store.interface';
 import ProductInterface from '../../interfaces/product.interface';
 
 function HomeScreen() {
-  const dispatch = useDispatch();
-
   const products: ProductInterface[] = useSelector(
     (state: StoreInterface) => state.products,
   );
-
-  const getProducts = async () => {
-    const apiProducts = await apiGetProducts();
-
-    dispatch(setProducts(apiProducts));
-  };
 
   const mostExpensiveProductPrice = (): number => {
     const productsValues: number[] = products.map((product) =>
@@ -30,10 +19,6 @@ function HomeScreen() {
 
     return Math.max(...productsValues);
   };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   return (
     <div className="home screen">

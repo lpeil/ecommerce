@@ -1,18 +1,30 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
 
-import store from './store';
-import theme from './styles/theme';
 import Routes from './routes';
+import theme from './styles/theme';
+
+import { setProducts } from './store/modules/products/products.actions';
+import { apiGetProducts } from './services/products';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const getProducts = async () => {
+    const apiProducts = await apiGetProducts();
+
+    dispatch(setProducts(apiProducts));
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Routes />
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
   );
 }
 
