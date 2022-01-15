@@ -1,16 +1,65 @@
-import React from 'react';
-import { Typography, Select, MenuItem } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Typography, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+
+import StoreInterface from '../../../../interfaces/store.interface';
+import HomeStoreInterface from '../../../../interfaces/home-store.interface';
+
+import { changeOrderBy } from '../../../../store/modules/home/home.actions';
 
 function HomeOrder() {
+  const dispatch = useDispatch();
+  const [selectedValue, setSelectedValue] = useState<string>('');
+
+  const homeOptions: HomeStoreInterface = useSelector(
+    (state: StoreInterface) => state.home,
+  );
+
+  const orders: {
+    name: string;
+    field: 'id' | 'name' | 'price';
+    order: 'asc' | 'desc';
+  }[] = [
+    { name: 'Featured', field: 'id', order: 'asc' },
+    { name: 'Price: Low to High', field: 'price', order: 'asc' },
+    { name: 'Price: High to Low', field: 'price', order: 'desc' },
+    { name: 'Name: A to Z', field: 'name', order: 'asc' },
+    { name: 'Name: Z to A', field: 'name', order: 'desc' },
+  ];
+
+  const handleSelectChange = (event: SelectChangeEvent<{ value: unknown }>) => {
+    const order = orders.find((o) => o.name === event.target.value);
+
+    if (order) {
+      dispatch(changeOrderBy(order.field, order.order));
+    }
+  };
+
+  useEffect(() => {
+    const order = orders.find(
+      (o) =>
+        o.field === homeOptions.orderBy.field &&
+        o.order === homeOptions.orderBy.order,
+    );
+
+    if (order) {
+      setSelectedValue(order.name);
+    }
+  }, [homeOptions.orderBy]);
+
   return (
     <div className="order">
       <Typography variant="body1">Order by</Typography>
-      <Select>
-        <MenuItem>Featured</MenuItem>
-        <MenuItem>Price: Low to High</MenuItem>
-        <MenuItem>Price: High to Low</MenuItem>
-        <MenuItem>Name: A to Z</MenuItem>
-        <MenuItem>Name: Z to A</MenuItem>
+      <Select
+        name="product-order-by"
+        onChange={handleSelectChange /* @ts-ignore */}
+        value={selectedValue}
+      >
+        {orders.map((order) => (
+          <MenuItem key={order.name} value={order.name}>
+            {order.name}
+          </MenuItem>
+        ))}
       </Select>
     </div>
   );

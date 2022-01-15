@@ -6,11 +6,21 @@ const initialState: HomeStoreInterface = {
     name: '',
     price: [0, 0],
   },
+  orderBy: {
+    field: 'id',
+    order: 'asc',
+  },
 };
 
 export default function cart(
   state: HomeStoreInterface = initialState,
-  action: { type: string; name?: string; price?: number[] },
+  action: {
+    type: string;
+    name?: string;
+    price?: number[];
+    field?: 'string';
+    order?: 'asc' | 'desc';
+  },
 ) {
   switch (action.type) {
     case '@home/CLEAR_FILTERS':
@@ -29,6 +39,14 @@ export default function cart(
         filters: {
           ...state.filters,
           price: action.price,
+        },
+      }));
+    case '@home/CHANGE_ORDER_BY':
+      return produce(state, () => ({
+        ...state,
+        orderBy: {
+          field: action.field,
+          order: action.order,
         },
       }));
     default:
