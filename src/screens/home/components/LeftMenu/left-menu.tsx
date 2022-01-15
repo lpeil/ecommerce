@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Typography,
-  TextField,
-  InputAdornment,
-  Chip,
-  Stack,
-} from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { Typography, Chip, Stack } from '@mui/material';
 
 import PriceSlider from '../PriceSlider';
+import NameSearch from '../NameSearch';
 
 import {
   setHomeNameFilter,
@@ -31,14 +25,6 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
   );
 
   const priceInitialValue: number[] = [0, highestPrice];
-
-  const changeNameFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    if (value === homeOptions.filters.name) return;
-
-    dispatch(setHomeNameFilter(value));
-  };
 
   const deleteFilterName = () => {
     dispatch(setHomeNameFilter(''));
@@ -67,21 +53,7 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
           />
         ) : null}
       </Stack>
-      <div className="filter">
-        <Typography variant="h6">Search by name</Typography>
-        <TextField
-          name="name-search"
-          value={homeOptions.filters.name}
-          onChange={changeNameFilter}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Search />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
+      <NameSearch />
       <PriceSlider highestPrice={highestPrice} />
     </div>
   );
