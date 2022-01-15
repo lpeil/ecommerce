@@ -21,6 +21,7 @@ function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
+    // eslint-disable-next-line no-console
     console.log('Add to cart', product);
   };
 
