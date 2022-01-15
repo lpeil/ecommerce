@@ -68,13 +68,14 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
         homeOptions.filters.price[1] !== priceInitialValue[1] ? (
           <Chip
             onDelete={deleteFilterPrice}
-            label={`${homeOptions.filters.price[0]} - ${homeOptions.filters.price[1]}`}
+            label={`$ ${homeOptions.filters.price[0]} - $ ${homeOptions.filters.price[1]}`}
           />
         ) : null}
       </Stack>
       <div className="filter">
         <Typography variant="h6">Search by name</Typography>
         <TextField
+          name="name-search"
           value={homeOptions.filters.name}
           onChange={changeNameFilter}
           InputProps={{
@@ -89,6 +90,7 @@ function HomeLeftMenu({ highestPrice }: HomeLeftMenuProps): JSX.Element {
       <div className="filter">
         <Typography variant="h6">Price Range</Typography>
         <Slider
+          name="price-search"
           max={highestPrice || 0}
           value={homeOptions.filters.price}
           onChange={changePriceFilter}
