@@ -1,0 +1,52 @@
+.product.screen {
+  display: flex;
+  flex-direction: row;
+
+  & img {
+    width: 640px;
+    height: 480px;
+
+    background-color: #F3F3F3;
+  }
+
+  .product-content {
+    margin-left: 64px;
+
+    &>p {
+      margin: 8px 0 16px;
+
+      max-width: 600px;
+    }
+
+    & .product-to-cart {
+      margin-top: 32px;
+      width: 240px;
+
+      .quantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & .MuiTextField-root {
+          margin-left: 8px;
+          width: 100%;
+
+          & .MuiOutlinedInput-input {
+            width: 100%;
+            padding: 6.5px 14px 6.5px;
+          }
+
+          & .MuiOutlinedInput-notchedOutline {
+            border-width: 1px !important;
+            border-color: rgba(0, 0, 0, 0.23) !important;
+          }
+        }
+      }
+
+      .MuiButton-root {
+        width: 100%;
+        margin-top: 16px;
+      }
+    }
+  }
+}
