@@ -7,6 +7,7 @@ import PriceSlider from '../PriceSlider';
 import OrderBy from '../OrderBy';
 
 import '../filters.style.scss';
+import './mobile-filters.style.scss';
 
 interface MobileFiltersProps {
   highestPrice: number;
@@ -45,6 +46,9 @@ function MobileFilters({ highestPrice }: MobileFiltersProps) {
           <OrderBy />
           <NameSearch />
           <PriceSlider highestPrice={highestPrice} />
+          <Button variant="contained" onClick={toggleDrawer}>
+            Apply Filters
+          </Button>
         </div>
       </Drawer>
     </Box>
