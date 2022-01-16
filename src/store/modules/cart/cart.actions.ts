@@ -6,6 +6,15 @@ export const addProductToCart = (product: ProductInterface, quantity = 1) => ({
   quantity,
 });
 
+export const changeProductQuantity = (
+  product: ProductInterface,
+  quantity: number,
+) => ({
+  type: '@cart/CHANGE_PRODUCT_QUANTITY',
+  product,
+  quantity,
+});
+
 export const removeProductFromCart = (product: ProductInterface) => ({
   type: '@cart/REMOVE_PRODUCT',
   product,

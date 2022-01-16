@@ -60,6 +60,32 @@ export default function cart(
       localStorage.setItem('cart', JSON.stringify(newStore));
 
       return newStore;
+    case '@cart/CHANGE_PRODUCT_QUANTITY':
+      productIndex = state.items.findIndex(
+        (p) => p.product.id === action.product?.id,
+      );
+
+      if (productIndex >= 0) {
+        newStore = produce(state, () => ({
+          items: state.items.map((p, key) => {
+            if (key === productIndex) {
+              return {
+                ...p,
+                quantity: action.quantity,
+              };
+            }
+
+            return p;
+          }),
+          new: true,
+        }));
+
+        localStorage.setItem('cart', JSON.stringify(newStore));
+
+        return newStore;
+      }
+
+      return state;
     default:
       return state;
   }
