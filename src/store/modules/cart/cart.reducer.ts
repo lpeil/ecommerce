@@ -60,6 +60,12 @@ export default function cart(
       localStorage.setItem('cart', JSON.stringify(newStore));
 
       return newStore;
+    case '@cart/CLEAR_CART':
+      newStore = { items: [], new: false };
+
+      localStorage.setItem('cart', JSON.stringify(newStore));
+
+      return newStore;
     case '@cart/CHANGE_PRODUCT_QUANTITY':
       productIndex = state.items.findIndex(
         (p) => p.product.id === action.product?.id,

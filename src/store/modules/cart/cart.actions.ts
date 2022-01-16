@@ -19,3 +19,7 @@ export const removeProductFromCart = (product: ProductInterface) => ({
   type: '@cart/REMOVE_PRODUCT',
   product,
 });
+
+export const clearCart = () => ({
+  type: '@cart/CLEAR_CART',
+});
