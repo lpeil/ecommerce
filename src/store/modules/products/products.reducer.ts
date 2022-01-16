@@ -2,7 +2,7 @@ import produce from 'immer';
 
 import ProductInterface from '../../../interfaces/product.interface';
 
-export default function cart(
+export default function products(
   state: ProductInterface[] = [],
   action: { type: string; products?: ProductInterface[] },
 ) {

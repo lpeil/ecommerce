@@ -12,7 +12,7 @@ const initialState: HomeStoreInterface = {
   },
 };
 
-export default function cart(
+export default function home(
   state: HomeStoreInterface = initialState,
   action: {
     type: string;
