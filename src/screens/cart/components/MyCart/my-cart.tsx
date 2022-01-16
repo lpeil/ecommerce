@@ -40,37 +40,41 @@ function MyCart() {
         My Cart
       </Typography>
       <div className="items">
-        {cart.items.map((item) => (
-          <Paper elevation={1} square key={item.product.id}>
-            <div className="content">
-              <img src={item.product.image} alt={item.product.name} />
-              <div className="item">
-                <Typography variant="body1">{item.product.name}</Typography>
-                <Typography variant="body2">{productDescription}</Typography>
+        {cart.items.length ? (
+          cart.items.map((item) => (
+            <Paper elevation={1} square key={item.product.id}>
+              <div className="content">
+                <img src={item.product.image} alt={item.product.name} />
+                <div className="item">
+                  <Typography variant="body1">{item.product.name}</Typography>
+                  <Typography variant="body2">{productDescription}</Typography>
+                </div>
               </div>
-            </div>
-            <div className="quantity">
-              <div className="input">
-                <Typography variant="body1">Quantity</Typography>
-                <TextField
-                  name="quantity"
-                  value={item.quantity}
-                  type="number"
-                  inputProps={{ min: 1, max: item.product.stock }}
-                  onChange={handleChangeCartQuantity(item.product)}
-                />
+              <div className="quantity">
+                <div className="input">
+                  <Typography variant="body1">Quantity</Typography>
+                  <TextField
+                    name="quantity"
+                    value={item.quantity}
+                    type="number"
+                    inputProps={{ min: 1, max: item.product.stock }}
+                    onChange={handleChangeCartQuantity(item.product)}
+                  />
+                </div>
+                <Typography variant="body1">
+                  {`$ ${(
+                    parseFloat(item.product.price) * item.quantity
+                  ).toFixed(2)}`}
+                </Typography>
               </div>
-              <Typography variant="body1">
-                {`$ ${(parseFloat(item.product.price) * item.quantity).toFixed(
-                  2,
-                )}`}
-              </Typography>
-            </div>
-            <IconButton onClick={handleRemoveProduct(item.product)}>
-              <Delete color="primary" />
-            </IconButton>
-          </Paper>
-        ))}
+              <IconButton onClick={handleRemoveProduct(item.product)}>
+                <Delete color="primary" />
+              </IconButton>
+            </Paper>
+          ))
+        ) : (
+          <Typography variant="h4">Empty cart</Typography>
+        )}
       </div>
     </div>
   );
