@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Typography, TextField, Button, Skeleton } from '@mui/material';
 
 import ProductName from './product-name';
 import './product.style.scss';
+
+import { addProductToCart } from '../../store/modules/cart/cart.actions';
 
 import StoreInterface from '../../interfaces/store.interface';
 import ProductInterface from '../../interfaces/product.interface';
@@ -15,6 +17,7 @@ const productDescription =
 function ProductScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const products: ProductInterface[] = useSelector(
     (state: StoreInterface) => state.products,
@@ -47,6 +50,11 @@ function ProductScreen() {
     const { value } = event.target;
 
     setCartQuantity(parseInt(value));
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addProductToCart(product, cartQuantity));
+    navigate('/cart');
   };
 
   useEffect(() => {
@@ -87,7 +95,9 @@ function ProductScreen() {
               disabled={!product.stock}
             />
           </div>
-          <Button variant="contained">Add to cart</Button>
+          <Button variant="contained" onClick={handleAddToCart}>
+            Add to cart
+          </Button>
         </div>
       </div>
     </div>
