@@ -28,12 +28,12 @@ function Navbar() {
   };
 
   useEffect(() => {
-    if (cart.products.length) {
-      const quantities = cart.products.map((p) => p.quantity);
+    if (cart.items.length) {
+      const quantities = cart.items.map((item) => item.quantity);
 
       setCartQuantity(quantities.reduce((a, b) => a + b));
     }
-  }, [cart.products]);
+  }, [cart.items]);
 
   return (
     <Box sx={{ flexGrow: 1 }} className="navbar">

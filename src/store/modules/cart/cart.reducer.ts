@@ -16,14 +16,14 @@ export default function cart(
 
   switch (action.type) {
     case '@cart/ADD_PRODUCT':
-      productIndex = state.products.findIndex(
+      productIndex = state.items.findIndex(
         (p) => p.product.id === action.product?.id,
       );
 
       if (productIndex === -1) {
         newStore = produce(state, () => ({
-          products: [
-            ...state.products,
+          items: [
+            ...state.items,
             { product: action.product, quantity: action.quantity },
           ],
           new: true,
@@ -35,7 +35,7 @@ export default function cart(
       }
 
       newStore = produce(state, () => ({
-        products: state.products.map((p, key) => {
+        items: state.items.map((p, key) => {
           if (key === productIndex) {
             return {
               ...p,
@@ -54,9 +54,7 @@ export default function cart(
     case '@cart/REMOVE_PRODUCT':
       newStore = produce(state, () => ({
         ...state,
-        products: state.products.filter(
-          (p) => p.product.id !== action.product?.id,
-        ),
+        items: state.items.filter((p) => p.product.id !== action.product?.id),
       }));
 
       localStorage.setItem('cart', JSON.stringify(newStore));

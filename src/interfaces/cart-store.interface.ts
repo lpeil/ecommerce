@@ -1,7 +1,7 @@
 import ProductInterface from './product.interface';
 
 interface CartStoreInterface {
-  products: {
+  items: {
     product: ProductInterface;
 
     quantity: number;
