@@ -27,12 +27,18 @@ function Navbar() {
     navigate('/cart');
   };
 
-  useEffect(() => {
+  const countCartQuantity = () => {
     if (cart.items.length) {
       const quantities = cart.items.map((item) => item.quantity);
 
-      setCartQuantity(quantities.reduce((a, b) => a + b));
+      return setCartQuantity(quantities.reduce((a, b) => a + b));
     }
+
+    return setCartQuantity(0);
+  };
+
+  useEffect(() => {
+    countCartQuantity();
   }, [cart.items]);
 
   return (
