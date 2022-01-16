@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/home';
 import NotFoundScreen from './screens/notFound';
 import ProductScreen from './screens/product';
+import CartScreen from './screens/cart';
 
 import { Navbar } from './components';
 
@@ -13,11 +14,10 @@ function AppRoutes() {
       <Navbar />
       <div className="content">
         <Routes>
-          <Route path="/">
-            <Route index element={<HomeScreen />} />
-            <Route path="/product/:id" element={<ProductScreen />} />
-            <Route path="*" element={<NotFoundScreen />} />
-          </Route>
+          <Route index element={<HomeScreen />} />
+          <Route path="/cart" element={<CartScreen />} />
+          <Route path="/product/:id" element={<ProductScreen />} />
+          <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </div>
     </BrowserRouter>
