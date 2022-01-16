@@ -20,6 +20,8 @@
       flex-direction: column;
 
       .MuiPaper-root {
+        position: relative;
+
         margin-bottom: 32px;
         padding: 16px;
 
@@ -45,32 +47,39 @@
             }
           }
         }
-      }
 
-      .quantity {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-
-        margin-top: 16px;
-        padding-top: 16px;
-
-        border-top: 2px solid #EEEEEE;
-
-        .input {
+        .quantity {
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: space-between;
 
-          & .MuiTextField-root {
-            margin-left: 8px;
-            width: 120px;
+          margin-top: 16px;
+          padding-top: 16px;
+
+          border-top: 2px solid #EEEEEE;
+
+          .input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            & .MuiTextField-root {
+              margin-left: 8px;
+              width: 120px;
+            }
+          }
+
+          &>.MuiTypography-body1 {
+            font-weight: 700;
           }
         }
 
-        &>.MuiTypography-body1 {
-          font-weight: 700;
+        .MuiIconButton-root {
+          position: absolute;
+
+          top: 4px;
+          right: 4px;
         }
       }
     }

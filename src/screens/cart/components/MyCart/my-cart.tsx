@@ -1,17 +1,38 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Typography, Paper, TextField } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { Typography, Paper, TextField, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 import StoreInterface from '../../../../interfaces/store.interface';
 import CartStoreInterface from '../../../../interfaces/cart-store.interface';
+import ProductInterface from '../../../../interfaces/product.interface';
+
+import {
+  changeProductQuantity,
+  removeProductFromCart,
+} from '../../../../store/modules/cart/cart.actions';
 
 const productDescription =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 function MyCart() {
+  const dispatch = useDispatch();
+
   const cart: CartStoreInterface = useSelector(
     (state: StoreInterface) => state.cart,
   );
+
+  const handleChangeCartQuantity =
+    (product: ProductInterface) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+
+      dispatch(changeProductQuantity(product, parseInt(value)));
+    };
+
+  const handleRemoveProduct = (product: ProductInterface) => () => {
+    dispatch(removeProductFromCart(product));
+  };
 
   return (
     <div className="my-cart">
@@ -35,8 +56,8 @@ function MyCart() {
                   name="quantity"
                   value={item.quantity}
                   type="number"
-                  inputProps={{ min: 1, max: 3000 }}
-                  onChange={() => console.log('ei')}
+                  inputProps={{ min: 1, max: item.product.stock }}
+                  onChange={handleChangeCartQuantity(item.product)}
                 />
               </div>
               <Typography variant="body1">
@@ -45,6 +66,9 @@ function MyCart() {
                 )}`}
               </Typography>
             </div>
+            <IconButton onClick={handleRemoveProduct(item.product)}>
+              <Delete color="primary" />
+            </IconButton>
           </Paper>
         ))}
       </div>
