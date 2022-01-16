@@ -3,16 +3,16 @@ import produce from 'immer';
 import CartStoreInterface from '../../../interfaces/cart-store.interface';
 import ProductInterface from '../../../interfaces/product.interface';
 
-const initialState: CartStoreInterface = {
-  products: [],
-  new: false,
-};
+const initialState: CartStoreInterface = JSON.parse(
+  localStorage.getItem('cart') || '{"products":[],"new":false}',
+);
 
 export default function cart(
   state = initialState,
   action: { type: string; product?: ProductInterface; quantity?: number },
 ) {
   let productIndex: number;
+  let newStore: CartStoreInterface;
 
   switch (action.type) {
     case '@cart/ADD_PRODUCT':
@@ -21,16 +21,20 @@ export default function cart(
       );
 
       if (productIndex === -1) {
-        return produce(state, () => ({
+        newStore = produce(state, () => ({
           products: [
             ...state.products,
             { product: action.product, quantity: action.quantity },
           ],
           new: true,
         }));
+
+        localStorage.setItem('cart', JSON.stringify(newStore));
+
+        return newStore;
       }
 
-      return produce(state, () => ({
+      newStore = produce(state, () => ({
         products: state.products.map((p, key) => {
           if (key === productIndex) {
             return {
@@ -43,13 +47,21 @@ export default function cart(
         }),
         new: true,
       }));
+
+      localStorage.setItem('cart', JSON.stringify(newStore));
+
+      return newStore;
     case '@cart/REMOVE_PRODUCT':
-      return produce(state, () => ({
+      newStore = produce(state, () => ({
         ...state,
         products: state.products.filter(
           (p) => p.product.id !== action.product?.id,
         ),
       }));
+
+      localStorage.setItem('cart', JSON.stringify(newStore));
+
+      return newStore;
     default:
       return state;
   }
