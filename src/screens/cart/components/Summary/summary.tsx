@@ -1,7 +1,14 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 function Summary() {
-  return <h1>Summary</h1>;
+  return (
+    <div className="summary">
+      <Typography variant="h5" color="primary">
+        Summary
+      </Typography>
+    </div>
+  );
 }
 
 export default Summary;

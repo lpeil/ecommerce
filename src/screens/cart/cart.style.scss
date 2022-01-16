@@ -1,0 +1,78 @@
+.cart.screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 100%;
+
+  &>div>h5 {
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .my-cart {
+    max-width: 40vw;
+    margin-right: 64px;
+
+    .items {
+      display: flex;
+      flex-direction: column;
+
+      .MuiPaper-root {
+        margin-bottom: 32px;
+        padding: 16px;
+
+        .content {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            width: 160px;
+            height: 120px;
+          }
+
+          .item {
+            display: flex;
+            flex-direction: column;
+
+            margin-left: 16px;
+
+            .MuiTypography-body1 {
+              margin-bottom: 8px;
+
+              font-weight: 700;
+            }
+          }
+        }
+      }
+
+      .quantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-top: 16px;
+        padding-top: 16px;
+
+        border-top: 2px solid #EEEEEE;
+
+        .input {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          & .MuiTextField-root {
+            margin-left: 8px;
+            width: 120px;
+          }
+        }
+
+        &>.MuiTypography-body1 {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
