@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Badge,
+} from '@mui/material';
 import { AccountCircle, ShoppingCart } from '@mui/icons-material';
 import './Navbar.styles.scss';
 
+import StoreInterface from '../../interfaces/store.interface';
+import CartStoreInterface from '../../interfaces/cart-store.interface';
+
 function Navbar() {
   const navigate = useNavigate();
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  const cart: CartStoreInterface = useSelector(
+    (state: StoreInterface) => state.cart,
+  );
 
   const handleNavigateToCart = () => {
     navigate('/cart');
   };
+
+  useEffect(() => {
+    if (cart.products.length) {
+      const quantities = cart.products.map((p) => p.quantity);
+
+      setCartQuantity(quantities.reduce((a, b) => a + b));
+    }
+  }, [cart.products]);
 
   return (
     <Box sx={{ flexGrow: 1 }} className="navbar">
@@ -22,7 +46,9 @@ function Navbar() {
             <AccountCircle color="secondary" />
           </IconButton>
           <IconButton onClick={handleNavigateToCart}>
-            <ShoppingCart color="secondary" />
+            <Badge badgeContent={cartQuantity} color="secondary">
+              <ShoppingCart color="secondary" />
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
