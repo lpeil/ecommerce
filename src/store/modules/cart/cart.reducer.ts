@@ -4,7 +4,7 @@ import CartStoreInterface from '../../../interfaces/cart-store.interface';
 import ProductInterface from '../../../interfaces/product.interface';
 
 const initialState: CartStoreInterface = JSON.parse(
-  localStorage.getItem('cart') || '{"products":[],"new":false}',
+  localStorage.getItem('cart') || '{"items":[],"new":false}',
 );
 
 export default function cart(
