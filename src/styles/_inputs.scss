@@ -1,0 +1,11 @@
+.MuiTextField-root {
+  & .MuiOutlinedInput-input {
+    width: 100%;
+    padding: 6.5px 14px 6.5px;
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    border-width: 1px !important;
+    border-color: rgba(0, 0, 0, 0.23) !important;
+  }
+}
