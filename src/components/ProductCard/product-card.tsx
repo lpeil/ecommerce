@@ -29,24 +29,20 @@ function ProductCard({ product }: ProductCardProps) {
     navigate(`/product/${product.id}`);
   };
 
-  const handlePaperClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    const { target } = event;
-
-    // @ts-ignore
-    if (target && target.nodeName !== 'BUTTON') {
-      handleViewProduct();
-    }
-  };
-
   return (
     <Box className="product-card">
       {/* @ts-ignore */}
-      <Paper elevation={0} square onClick={handlePaperClick}>
-        <CardMedia image={product.image} alt={product.name} component="img" />
+      <Paper elevation={0} square>
+        <CardMedia
+          image={product.image}
+          alt={product.name}
+          component="img"
+          onClick={handleViewProduct}
+        />
         <CardContent>
-          <Typography variant="h6">{product.name}</Typography>
+          <Typography variant="h6" onClick={handleViewProduct}>
+            {product.name}
+          </Typography>
           <Typography variant="body1" component="p">
             {`$ ${product.price}`}
           </Typography>
