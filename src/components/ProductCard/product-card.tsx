@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
   CardContent,
   Typography,
   Button,
+  Skeleton,
 } from '@mui/material';
 
 import './product-cards.style.scss';
@@ -22,6 +23,7 @@ interface ProductCardProps {
 function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addProductToCart(product));
@@ -34,13 +36,20 @@ function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Box className="product-card">
-      {/* @ts-ignore */}
       <Paper elevation={0} square>
         <CardMedia
           image={product.image}
           alt={product.name}
           component="img"
           onClick={handleViewProduct}
+          onLoad={() => setImageLoaded(true)}
+          sx={{ display: imageLoaded ? 'block' : 'none' }}
+        />
+        <Skeleton
+          variant="rectangular"
+          width={320}
+          height={240}
+          sx={{ display: imageLoaded ? 'none' : 'block' }}
         />
         <CardContent>
           <Typography variant="h6" onClick={handleViewProduct}>
