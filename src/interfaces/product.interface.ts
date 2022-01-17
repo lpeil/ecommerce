@@ -3,7 +3,7 @@ interface Product {
 
   name: string;
 
-  created: Date;
+  createdAt: string;
 
   price: number;
 
