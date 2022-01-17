@@ -78,7 +78,7 @@ function ProductScreen() {
         )}
         {loadedProduct ? (
           <Typography variant="h3" component="h6">
-            {`$ ${product.price}`}
+            {`$ ${product.price.toFixed(2)}`}
           </Typography>
         ) : (
           <Skeleton variant="text" height={64} width={140} />

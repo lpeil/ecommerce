@@ -14,9 +14,7 @@ function HomeScreen() {
   );
 
   const mostExpensiveProductPrice = (): number => {
-    const productsValues: number[] = products.map((product) =>
-      parseInt(product.price),
-    );
+    const productsValues: number[] = products.map((product) => product.price);
 
     return Math.max(...productsValues);
   };

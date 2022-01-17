@@ -19,8 +19,8 @@ function HomeListCards() {
 
   const filterProducts = (product: ProductInterface) => {
     if (
-      parseInt(product.price) < homeOptions.filters.price[0] ||
-      parseInt(product.price) > homeOptions.filters.price[1]
+      product.price < homeOptions.filters.price[0] ||
+      product.price > homeOptions.filters.price[1]
     ) {
       return false;
     }
@@ -31,8 +31,8 @@ function HomeListCards() {
   };
 
   const orderProducts = (a: ProductInterface, b: ProductInterface) => {
-    const price1 = parseInt(a.price);
-    const price2 = parseInt(b.price);
+    const price1 = a.price;
+    const price2 = b.price;
     const name1 = a.name.toLowerCase();
     const name2 = b.name.toLowerCase();
 

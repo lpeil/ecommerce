@@ -47,7 +47,7 @@ function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </Typography>
           <Typography variant="body1" component="p">
-            {`$ ${product.price}`}
+            {`$ ${product.price.toFixed(2)}`}
           </Typography>
           <Button variant="contained" onClick={handleAddToCart}>
             Add to Cart

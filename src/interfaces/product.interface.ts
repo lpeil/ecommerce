@@ -5,7 +5,7 @@ interface Product {
 
   created: Date;
 
-  price: string;
+  price: number;
 
   image: string;
 

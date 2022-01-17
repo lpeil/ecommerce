@@ -8,6 +8,7 @@ export const apiGetProducts = () =>
 
     return data.map((item: ProductInterface) => ({
       ...item,
+      price: parseFloat(`${item.price}`),
       image: item.image.replace('lorempixel', 'loremflickr'),
     }));
   });

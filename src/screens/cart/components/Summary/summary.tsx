@@ -22,7 +22,7 @@ function Summary() {
     let value = 0;
 
     cart.items.forEach((item) => {
-      value += parseInt(item.product.price) * item.quantity;
+      value += item.product.price * item.quantity;
     });
 
     setTotalValue(`$ ${value}.00`);

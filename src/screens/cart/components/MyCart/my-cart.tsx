@@ -27,7 +27,7 @@ function MyCart() {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
 
-      dispatch(changeProductQuantity(product, parseInt(value)));
+      dispatch(changeProductQuantity(product, parseFloat(value)));
     };
 
   const handleRemoveProduct = (product: ProductInterface) => () => {
@@ -62,9 +62,7 @@ function MyCart() {
                   />
                 </div>
                 <Typography variant="body1">
-                  {`$ ${(
-                    parseFloat(item.product.price) * item.quantity
-                  ).toFixed(2)}`}
+                  {`$ ${(item.product.price * item.quantity).toFixed(2)}`}
                 </Typography>
               </div>
               <IconButton onClick={handleRemoveProduct(item.product)}>
