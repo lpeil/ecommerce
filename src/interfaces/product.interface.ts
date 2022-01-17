@@ -3,9 +3,9 @@ interface Product {
 
   name: string;
 
-  created: Date;
+  createdAt: string;
 
-  price: string;
+  price: number;
 
   image: string;
 

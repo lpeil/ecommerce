@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -12,6 +13,7 @@ import {
 import './product-cards.style.scss';
 
 import ProductInterface from '../../interfaces/product.interface';
+import { addProductToCart } from '../../store/modules/cart/cart.actions';
 
 interface ProductCardProps {
   product: ProductInterface;
@@ -19,10 +21,11 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    // eslint-disable-next-line no-console
-    console.log('Add to cart', product);
+    dispatch(addProductToCart(product));
+    navigate('/cart');
   };
 
   const handleViewProduct = () => {
@@ -44,7 +47,7 @@ function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </Typography>
           <Typography variant="body1" component="p">
-            {`$ ${product.price}`}
+            {`$ ${product.price.toFixed(2)}`}
           </Typography>
           <Button variant="contained" onClick={handleAddToCart}>
             Add to Cart
