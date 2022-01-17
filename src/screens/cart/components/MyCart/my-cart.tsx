@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Paper, TextField, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
@@ -16,11 +17,16 @@ const productDescription =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 function MyCart() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const cart: CartStoreInterface = useSelector(
     (state: StoreInterface) => state.cart,
   );
+
+  const handleNavigateToProduct = (product: ProductInterface) => () => {
+    navigate(`/product/${product.id}`);
+  };
 
   const handleChangeCartQuantity =
     (product: ProductInterface) =>
@@ -44,9 +50,18 @@ function MyCart() {
           cart.items.map((item) => (
             <Paper elevation={1} square key={item.product.id}>
               <div className="content">
-                <img src={item.product.image} alt={item.product.name} />
+                <img
+                  src={item.product.image}
+                  alt={item.product.name}
+                  onClick={handleNavigateToProduct(item.product)}
+                />
                 <div className="item">
-                  <Typography variant="body1">{item.product.name}</Typography>
+                  <Typography
+                    variant="body1"
+                    onClick={handleNavigateToProduct(item.product)}
+                  >
+                    {item.product.name}
+                  </Typography>
                   <Typography variant="body2">{productDescription}</Typography>
                 </div>
               </div>

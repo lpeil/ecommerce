@@ -23,6 +23,8 @@ module.exports = {
     'import/extensions': 0,
     'default-param-last': 0,
     'no-restricted-exports': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     radix: 0,
     'import/no-unresolved': 'error',
