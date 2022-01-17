@@ -1,3 +1,5 @@
+import products from '../fixtures/products.json';
+
 describe('Home Screen', () => {
   beforeEach(() => {
     cy.intercept('GET', `${Cypress.env().apiURL}product`, {
@@ -7,6 +9,7 @@ describe('Home Screen', () => {
 
   it('visit Home Screen', () => {
     cy.visit(Cypress.env().baseURL);
+    cy.wait(500);
   });
 
   it('checks render', () => {
@@ -21,11 +24,13 @@ describe('Home Screen', () => {
         .invoke('attr', 'value', searchValue)
         .trigger('change');
 
-      cy.get('.left-menu .stack').children().should('have.length', '1');
-      cy.get('.left-menu .stack')
+      cy.get('.products .list-cards')
         .children()
-        .get('.MuiChip-label')
-        .contains(searchValue);
+        .its('length')
+        .should(
+          'eq',
+          products.filter((p) => p.name.includes(searchValue)).length,
+        );
 
       cy.get('.products .list-cards')
         .children()
@@ -42,9 +47,9 @@ describe('Home Screen', () => {
     });
 
     it('checks remove name filter', () => {
-      cy.get('.left-menu .stack .MuiSvgIcon-root').click();
-
-      cy.get('.left-menu .stack').children().should('have.length', '0');
+      cy.get('.left-menu input[name="name-search"]')
+        .invoke('attr', 'value', '')
+        .trigger('change');
 
       cy.window()
         .its('store')
@@ -54,17 +59,42 @@ describe('Home Screen', () => {
     });
 
     it('checks value filter', () => {
-      cy.get('.left-menu input[name="price-search"]')
-        .first()
-        .click(50, 0, { force: true });
+      cy.get('[data-cy="slider-price"]').setSlider([100, 200]);
 
-      cy.get('.left-menu .stack').children().should('have.length', '1');
+      cy.get('.products .list-cards')
+        .children()
+        .its('length')
+        .should(
+          'eq',
+          products.filter((p) => p.price >= 100 && p.price <= 200).length,
+        );
+
+      cy.window()
+        .its('store')
+        .invoke('getState')
+        .its('home.filters.price')
+        .should('deep.equal', [100, 200]);
     });
 
     it('checks remove value filter', () => {
-      cy.get('.left-menu .stack .MuiSvgIcon-root').click();
+      const productsValues: number[] = products.map((product) => product.price);
+      const mostExpensiveProductPrice = Math.max(...productsValues);
 
-      cy.get('.left-menu .stack').children().should('have.length', '0');
+      cy.get('[data-cy="slider-price"]').setSlider([
+        0,
+        mostExpensiveProductPrice,
+      ]);
+
+      cy.get('.products .list-cards')
+        .children()
+        .its('length')
+        .should('eq', products.length);
+
+      cy.window()
+        .its('store')
+        .invoke('getState')
+        .its('home.filters.price')
+        .should('deep.equal', [0, mostExpensiveProductPrice]);
     });
   });
 
