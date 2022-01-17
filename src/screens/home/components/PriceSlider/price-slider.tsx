@@ -43,6 +43,7 @@ function PriceSlider({ highestPrice }: PriceSliderProps) {
         getAriaValueText={sliderTextValue}
         valueLabelFormat={sliderTextValue}
         disableSwap
+        data-cy="slider-price"
       />
     </div>
   );
