@@ -8,7 +8,13 @@ export default function products(
 ) {
   switch (action.type) {
     case '@products/SET_PRODUCTS':
-      return produce(state, () => action.products);
+      return produce(state, () =>
+        action.products?.map((item: ProductInterface) => ({
+          ...item,
+          price: parseFloat(`${item.price}`),
+          image: item.image.replace('lorempixel', 'loremflickr'),
+        })),
+      );
     default:
       return state;
   }
