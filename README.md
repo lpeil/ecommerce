@@ -1,34 +1,91 @@
-# E-commerce.
+<h1 align="center">Ecommerce</h1>
 
-## Run locally
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/lpeil/ecommerce?color=56BEB8">
+
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/lpeil/ecommerce?color=56BEB8">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/lpeil/ecommerce?color=56BEB8">
+
+  <img alt="License" src="https://img.shields.io/github/license/lpeil/ecommerce?color=56BEB8">
+</p>
+
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#bookmark_tabs-available-scripts">Available Scripts</a> &#xa0; | &#xa0;
+  <a href="https://lpeil-ecommerce.netlify.app/">Demo</a> &#xa0; | &#xa0;
+  <a href="https://github.com/lpeil" target="_blank">Author</a>
+</p>
+
+<br>
+
+## :dart: About ##
+
+A simple project to test the cart logic.
+
+## :sparkles: Features ##
+
+:heavy_check_mark: List and search products;\
+:heavy_check_mark: Product page;\
+:heavy_check_mark: Add products to cart;\
+:heavy_check_mark: Change/Remove products in cart;
+
+## :rocket: Technologies ##
+
+The following tools were used in this project:
+
+- [React](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## :white_check_mark: Requirements ##
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting ##
+
+```bash
+# Clone this project
+$ git clone https://github.com/lpeil/ecommerce
+
+# Access
+$ cd ecommerce
+
+# Install dependencies
+$ npm install
+
+# Run the project
+$ npm start
+
+# The server will initialize in the <http://localhost:3000>
+```
+## :bookmark_tabs: Available Scripts ##
+
+```bash
+# Run project
+$ npm start
+
+# Run eslint into the project
+$ npm run lint
+
+# Runs Cypress tests to completion
+$ npm run cypress
+
+# Runs Cypress Visual tests to completion
+$ npm run cypress:open
 
 ```
-  npm install
-  npm start
-```
 
-## Available Scripts
-### `npm start`
+## :memo: License ##
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm install`
+Made with :heart: by <a href="https://github.com/lpeil" target="_blank">Luan Peil</a>
 
-Install applications dependencies.
+&#xa0;
 
-### `npm run lint`
-
-Run eslint into the application.
-
-### `npm run cypress`
-
-Runs Cypress tests to completion. [See all options here](https://docs.cypress.io/guides/guides/command-line#cypress-run)
-
-### `npm run cypress:open`
-
-Opens the Cypress Test Runner. [See all options here](https://docs.cypress.io/guides/guides/command-line#cypress-open)
-
+<a href="#top">Back to top</a>
